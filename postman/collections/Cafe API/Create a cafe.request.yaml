@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{base_url}}/cafes/"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "name": "Test cafe",
+      "latitude": 40.7128,
+      "longitude": -74.0060
+    }
+order: 237526722402582
