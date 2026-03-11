@@ -1,9 +1,9 @@
 services:
   db:
     image: postgres:16
-    container_name: workatacafe-db
+    container_name: workatcafe-db
     environment:
-      POSTGRES_DB: workatacafe
+      POSTGRES_DB: workatcafe
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
