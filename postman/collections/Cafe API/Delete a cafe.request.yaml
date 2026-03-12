@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{base_url}}/cafes/:cafe_id"
+method: DELETE
+pathVariables:
+  cafe_id: "1"
+body:
+  type: json
+  content: ""
+order: 4394876952108046

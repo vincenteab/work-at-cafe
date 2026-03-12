@@ -56,13 +56,8 @@ export async function addCafes(req: Request, res: Response) {
 export async function modifyCafe(req: Request, res: Response) {
   try {
     const id = Number(req.params.id);
-    const data = req.body?.data;
-    if (
-      !Number.isInteger(id) ||
-      id <= 0 ||
-      typeof data !== "object" ||
-      data === null
-    ) {
+    const data = req.body;
+    if (!Number.isInteger(id) || id <= 0 || data === null) {
       return res.status(400).json({ error: "Invalid update payload" });
     }
 

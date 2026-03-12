@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{base_url}}/cafes/:cafe_id"
+method: PATCH
+pathVariables:
+  cafe_id: "3"
+body:
+  type: json
+  content: |-
+    {
+        "name": "Updated test cafe"
+    }
+order: 4438493910482729
