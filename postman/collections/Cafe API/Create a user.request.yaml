@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{base_url}}/users"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "email": "test123@gmail.com",
+        "name": "John Doe"
+    }
+order: 4463455141885054

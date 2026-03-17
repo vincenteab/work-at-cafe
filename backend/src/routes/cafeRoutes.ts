@@ -7,11 +7,11 @@ import {
   listCafe,
 } from "../controllers/cafeController";
 
-const router = Router();
-router.get("/", listCafes);
-router.get("/:id", listCafe);
-router.post("/", addCafes);
-router.patch("/:id", modifyCafe);
-router.delete("/:id", removeCafe);
+const cafeRoutes = Router();
+cafeRoutes.get("/", listCafes);
+cafeRoutes.get("/:id", listCafe);
+cafeRoutes.post("/", addCafes);
+cafeRoutes.patch("/:id", modifyCafe);
+cafeRoutes.delete("/:id", removeCafe);
 
-export default router;
+export default cafeRoutes;

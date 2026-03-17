@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
-import router from "./routes/cafeRoutes";
+import cafeRoutes from "./routes/cafeRoutes";
+import userRoutes from "./routes/userRoutes";
 
 const app = express();
 
@@ -11,7 +12,8 @@ app.get("/health", (req, res) => {
   res.json({ status: "OK" });
 });
 
-app.use("/cafes", router);
+app.use("/cafes", cafeRoutes);
+app.use("/users", userRoutes);
 const PORT = 4000;
 
 app.listen(PORT, () => {

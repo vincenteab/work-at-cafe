@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{base_url}}/users/:userId"
+method: GET
+pathVariables:
+  userId: "1"
+order: 4449253517330622

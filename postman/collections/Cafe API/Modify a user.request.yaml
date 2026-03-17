@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{base_url}}/users/:userId"
+method: PATCH
+pathVariables:
+  userId: "1"
+body:
+  type: json
+  content: |-
+    {
+        "name": "Mary Jane"
+    }
+order: 4469017943440176
