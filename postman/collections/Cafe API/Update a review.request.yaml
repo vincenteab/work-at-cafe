@@ -1,0 +1,17 @@
+$kind: http-request
+name: Update a review
+url: "{{base_url}}/reviews/:reviewId"
+method: PATCH
+pathVariables:
+  reviewId: "2"
+body:
+  type: json
+  content: |-
+    {
+        "text": "Bad cafe",
+        "rating": 1,
+        "wifiRating": 1,
+        "hasOutlets": "No",
+        "noiseLevel": "High"
+    }
+order: 4503564181844551

@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{base_url}}/reviews"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "text": "Good cafe",
+        "rating": 4,
+        "wifiRating": 3,
+        "hasOutlets": "Yes",
+        "noiseLevel": "Low",
+        "cafeId": {{cafeId}}
+    }
+order: 4503534536158914

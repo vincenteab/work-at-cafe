@@ -1,0 +1,7 @@
+$kind: http-request
+name: Get review
+url: "{{base_url}}/reviews/:reviewId"
+method: GET
+pathVariables:
+  reviewId: "2"
+order: 4503507168935695
