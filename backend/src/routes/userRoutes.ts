@@ -4,9 +4,11 @@ import {
   modifyUser,
   removeUser,
   listUser,
+  listUsers,
 } from "../controllers/userController";
 
 const userRoutes = Router();
+userRoutes.get("/", listUsers);
 userRoutes.get("/:id", listUser);
 userRoutes.post("/", addUser);
 userRoutes.patch("/:id", modifyUser);

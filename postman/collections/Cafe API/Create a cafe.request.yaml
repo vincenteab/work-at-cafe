@@ -1,5 +1,6 @@
 $kind: http-request
-url: "{{base_url}}/cafes/"
+name: Create a cafe
+url: "{{base_url}}/cafes"
 method: POST
 body:
   type: json
@@ -7,6 +8,7 @@ body:
     {
       "name": "Test cafe",
       "latitude": 40.7128,
-      "longitude": -74.0060
+      "longitude": -74.0060,
+      "userId": {{userId}}
     }
 order: 237526722402582
