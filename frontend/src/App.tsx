@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button } from "./components/ui/button";
 
 // 1. Define the TypeScript shape so React knows what to expect
 interface Cafe {
@@ -16,7 +17,7 @@ function App() {
   // 3. The useEffect hook runs once when the page loads
   useEffect(() => {
     // **ENTER YOUR BACKEND URL HERE**
-    fetch("")
+    fetch(`${import.meta.env.VITE_API_URL}/cafes`)
       .then((response) => {
         if (!response.ok) throw new Error("Failed to fetch");
         return response.json();
@@ -28,6 +29,7 @@ function App() {
   return (
     <div style={{ padding: "40px", fontFamily: "sans-serif" }}>
       <h1>My Study Spots</h1>
+      <Button variant={"outline"}>Button</Button>
 
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
 
