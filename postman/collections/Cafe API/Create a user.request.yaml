@@ -1,11 +1,12 @@
 $kind: http-request
+name: Create a user
 url: "{{base_url}}/users"
 method: POST
 body:
   type: json
   content: |-
     {
-        "email": "test123@gmail.com",
-        "name": "John Doe"
+        "email": "{{user_email}}",
+        "name": "{{user_name}}"
     }
 order: 4463455141885054

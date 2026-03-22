@@ -1,4 +1,5 @@
 $kind: http-request
+name: Update a cafe
 url: "{{base_url}}/cafes/:cafe_id"
 method: PATCH
 pathVariables:
@@ -7,6 +8,6 @@ body:
   type: json
   content: |-
     {
-        "name": "Updated test cafe"
+        "name": "{{cafe_name_update}}"
     }
 order: 4438493910482729

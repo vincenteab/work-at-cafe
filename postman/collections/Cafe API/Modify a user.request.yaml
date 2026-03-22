@@ -1,12 +1,13 @@
 $kind: http-request
+name: Modify a user
 url: "{{base_url}}/users/:userId"
 method: PATCH
 pathVariables:
-  userId: "1"
+  userId: "2"
 body:
   type: json
   content: |-
     {
-        "name": "Mary Jane"
+        "name": "{{user_name_update}}"
     }
 order: 4469017943440176

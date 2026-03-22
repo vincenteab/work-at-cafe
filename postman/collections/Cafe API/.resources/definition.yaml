@@ -2,3 +2,10 @@ $kind: collection
 name: Cafe API
 variables:
   userId: ""
+  cafe_name: ""
+  user_email: ""
+  user_name: ""
+  cafe_latitude: ""
+  cafe_longitude: ""
+  cafe_name_update: ""
+  user_name_update: ""

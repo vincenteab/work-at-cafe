@@ -6,9 +6,9 @@ body:
   type: json
   content: |-
     {
-      "name": "Test cafe",
-      "latitude": 40.7128,
-      "longitude": -74.0060,
+      "name": "{{cafe_name}}",
+      "latitude": {{cafe_latitude}},
+      "longitude": {{cafe_longitude}},
       "userId": {{userId}}
     }
 order: 237526722402582
