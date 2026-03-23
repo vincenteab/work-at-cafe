@@ -13,9 +13,9 @@ app.get("/health", (req, res) => {
   res.json({ status: "OK" });
 });
 
-app.use("/cafes", cafeRoutes);
-app.use("/users", userRoutes);
-app.use("/reviews", reviewRoutes);
+app.use("/api/v1/cafes", cafeRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/reviews", reviewRoutes);
 const PORT = 4000;
 
 app.listen(PORT, () => {
