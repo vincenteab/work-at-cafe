@@ -1,6 +1,7 @@
 $kind: http-request
+name: Get a user
 url: "{{base_url}}/users/:userId"
 method: GET
 pathVariables:
-  userId: "1"
+  userId: "2"
 order: 4449253517330622

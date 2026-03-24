@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import { Button } from "./components/ui/button";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import AddCafe from "./pages/AddCafe";
+import EditCafe from "./pages/EditCafe";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/add" element={<AddCafe />} />
+            <Route path="/edit/:id" element={<EditCafe />} />
           </Routes>
         </main>
       </div>

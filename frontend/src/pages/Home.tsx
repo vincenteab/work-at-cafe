@@ -7,6 +7,9 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { SimpleAlertDialog } from "@/components/ui/alert-dialog";
+import { cafeService } from "../services/cafeApi";
 
 interface Cafe {
   id: number;
@@ -20,7 +23,21 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Move this into services in future
+  const handleDelete = async (cafeId: number) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await cafeService.delete(cafeId);
+    } catch (err: any) {
+      setError(err.response?.data?.error || "Failed to delete cafe");
+    } finally {
+      // Refresh cafe list after deletion
+      setIsLoading(false);
+      setCafes((prev) => prev.filter((cafe) => cafe.id !== cafeId));
+    }
+  };
+
+  // ** Move this into services in future **
   useEffect(() => {
     fetch(import.meta.env.VITE_API_URL + "/cafes")
       .then((response) => {
@@ -72,9 +89,20 @@ export default function Home() {
                 </p>
               </CardContent>
               <CardFooter>
-                <Button variant="secondary" className="w-full">
-                  View Details
-                </Button>
+                <Link to={`/edit/${cafe.id}`} state={{ cafe }}>
+                  <Button variant="secondary" className="w-full">
+                    Edit Cafe
+                  </Button>
+                </Link>
+                <SimpleAlertDialog
+                  title="Delete"
+                  description={`Are you sure you want to delete "${cafe.name}"? This action cannot be undone.`}
+                  confirmText="Delete"
+                  onConfirm={() => handleDelete(cafe.id)}
+                  triggerContent={
+                    <Button variant="destructive">Delete Cafe</Button>
+                  }
+                ></SimpleAlertDialog>
               </CardFooter>
             </Card>
           ))}
