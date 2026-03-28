@@ -8,7 +8,10 @@ body:
     {
       "name": "{{cafe_name}}",
       "latitude": {{cafe_latitude}},
-      "longitude": {{cafe_longitude}},
-      "userId": {{userId}}
+      "longitude": {{cafe_longitude}}
     }
+auth:
+  type: bearer
+  credentials:
+    token: ""
 order: 3558825340767381

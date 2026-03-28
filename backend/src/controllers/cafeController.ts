@@ -6,6 +6,7 @@ import {
   deleteCafe,
   updateCafe,
 } from "../services/cafeService";
+import { AuthRequest } from "../middleware/authMiddleware";
 
 export async function listCafes(req: Request, res: Response) {
   try {
@@ -28,9 +29,10 @@ export async function listCafe(req: Request, res: Response) {
   }
 }
 
-export async function addCafes(req: Request, res: Response) {
+export async function addCafes(req: AuthRequest, res: Response) {
   try {
-    const { name, latitude, longitude, userId } = req.body ?? {};
+    const { name, latitude, longitude } = req.body ?? {};
+    const userId = req.user!.userId;
 
     if (
       typeof name !== "string" ||
