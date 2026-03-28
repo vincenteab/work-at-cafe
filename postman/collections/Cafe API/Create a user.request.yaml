@@ -1,12 +1,13 @@
 $kind: http-request
 name: Create a user
-url: "{{base_url}}/users"
+url: "{{base_url}}/users/register"
 method: POST
 body:
   type: json
   content: |-
     {
         "email": "{{user_email}}",
-        "name": "{{user_name}}"
+        "name": "{{user_name}}",
+        "password": "{{user_password}}"
     }
 order: 4463455141885054

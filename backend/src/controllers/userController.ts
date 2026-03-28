@@ -7,6 +7,31 @@ import {
   deleteUser,
 } from "../services/userService";
 
+export const register = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email, name, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({ error: "Email and password are required" });
+      return;
+    }
+
+    const newUser = await createUser({ email, name, password });
+
+    res.status(201).json({
+      message: "User registered successfully",
+      user: {
+        id: newUser.id,
+        email: newUser.email,
+        name: newUser.name,
+      },
+    });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 export async function listUsers(req: Request, res: Response) {
   try {
     const users = await getUsers();
@@ -24,25 +49,6 @@ export async function listUser(req: Request, res: Response) {
     return res.status(200).json(user);
   } catch (error: unknown) {
     console.error("Failed to list user:", error);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-}
-
-export async function addUser(req: Request, res: Response) {
-  try {
-    const { email, name } = req.body ?? {};
-
-    if (typeof email !== "string" || email.trim().length === 0) {
-      return res.status(400).json({ error: "Invalid user payload" });
-    }
-
-    const user = await createUser({
-      email: email,
-      name: name,
-    });
-    return res.status(201).json(user);
-  } catch (error: unknown) {
-    console.error("Failed to create user:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 }

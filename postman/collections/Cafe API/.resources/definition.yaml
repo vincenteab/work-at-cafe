@@ -9,3 +9,4 @@ variables:
   cafe_longitude: ""
   cafe_name_update: ""
   user_name_update: ""
+  user_password: ""

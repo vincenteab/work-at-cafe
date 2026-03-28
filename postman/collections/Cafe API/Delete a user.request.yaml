@@ -3,5 +3,5 @@ name: Delete a user
 url: "{{base_url}}/users/:userId"
 method: DELETE
 pathVariables:
-  userId: "0"
+  userId: "1"
 order: 4470478701365842

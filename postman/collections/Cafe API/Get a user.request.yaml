@@ -3,5 +3,5 @@ name: Get a user
 url: "{{base_url}}/users/:userId"
 method: GET
 pathVariables:
-  userId: "2"
+  userId: "1"
 order: 4449253517330622
