@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{base_url}}/users/login"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "email": "{{login_email}}",
+        "password": "{{login_password}}"
+    }
+order: 1774669914227

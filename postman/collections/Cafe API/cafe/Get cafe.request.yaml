@@ -3,4 +3,4 @@ url: "{{base_url}}/cafes/:cafe_id"
 method: GET
 pathVariables:
   cafe_id: "1"
-order: 3239011582972058
+order: 3602739511433514

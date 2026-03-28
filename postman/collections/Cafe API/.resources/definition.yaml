@@ -10,3 +10,5 @@ variables:
   cafe_name_update: ""
   user_name_update: ""
   user_password: ""
+  login_email: ""
+  login_password: ""

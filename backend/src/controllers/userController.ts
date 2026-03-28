@@ -5,6 +5,7 @@ import {
   createUser,
   getUsers,
   deleteUser,
+  loginUser,
 } from "../services/userService";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
@@ -116,5 +117,25 @@ export async function removeUser(req: Request, res: Response) {
 
     console.error("Failed to delete user:", error);
     return res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export async function login(req: Request, res: Response) {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({ error: "Email and password are required" });
+      return;
+    }
+    const result = await loginUser({ email, password });
+    res.status(200).json({
+      message: "Login successful",
+      user: result.user,
+      token: result.token,
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
