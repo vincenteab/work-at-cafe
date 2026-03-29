@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { SimpleAlertDialog } from "@/components/ui/alert-dialog";
 import { cafeService } from "../services/cafeApi";
+import { useAuth } from "@/context/AuthContext";
 
 interface Cafe {
   id: number;
@@ -22,6 +23,7 @@ export default function Home() {
   const [cafes, setCafes] = useState<Cafe[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { isAuthenticated, user } = useAuth();
 
   const handleDelete = async (cafeId: number) => {
     setError(null);
@@ -39,20 +41,35 @@ export default function Home() {
 
   // ** Move this into services in future **
   useEffect(() => {
-    fetch(import.meta.env.VITE_API_URL + "/cafes")
-      .then((response) => {
-        if (!response.ok) throw new Error("Failed to fetch cafes");
-        return response.json();
-      })
-      .then((data) => {
-        setCafes(data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
-      });
-  }, []);
+    if (isAuthenticated) {
+      fetch(import.meta.env.VITE_API_URL + "/cafes")
+        .then((response) => {
+          if (!response.ok) throw new Error("Failed to fetch cafes");
+          return response.json();
+        })
+        .then((data) => {
+          setCafes(data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setIsLoading(false);
+        });
+    }
+  }, [isAuthenticated]);
+
+  if (!isAuthenticated) {
+    return (
+      <div className="flex items-center justify-center min-h-[80vh] font-sans">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Welcome to Study Spots!</h2>
+          <p className="text-gray-500 mb-6">
+            Please log in to view and manage your favorite cafes.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-5xl mx-auto p-6 font-sans">
