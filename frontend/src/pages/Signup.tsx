@@ -1,4 +1,3 @@
-// frontend/src/pages/Login.tsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -15,12 +14,13 @@ import {
 import { authService } from "@/services/authApi";
 import { useAuth } from "@/context/AuthContext";
 
-export default function Login() {
+export default function Signup() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,12 +30,12 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const response = await authService.login({ email, password });
+      const response = await authService.register({ email, password, name });
       login(response.user, response.token);
       navigate("/");
     } catch (err: any) {
       setError(
-        err.response?.data?.error || "Failed to login. Please try again.",
+        err.response?.data?.error || "Failed to register. Please try again.",
       );
     } finally {
       setIsLoading(false);
@@ -47,10 +47,10 @@ export default function Login() {
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">
-            Welcome back
+            Create an account
           </CardTitle>
           <CardDescription className="text-center">
-            Enter your email and password to log in to your account
+            Enter your name, email, and a password to create your account.
           </CardDescription>
         </CardHeader>
 
@@ -61,6 +61,17 @@ export default function Login() {
                 {error}
               </div>
             )}
+
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
 
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -85,16 +96,16 @@ export default function Login() {
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Logging in..." : "Log In"}
+              {isLoading ? "Creating account..." : "Create Account"}
             </Button>
           </form>
         </CardContent>
 
         <CardFooter className="flex justify-center">
           <p className="text-sm text-gray-500">
-            Don't have an account?
-            <Link to="/signup" className="text-blue-600 hover:underline">
-              Sign up
+            Already have an account?
+            <Link to="/login" className="text-blue-600 hover:underline">
+              Log in
             </Link>
           </p>
         </CardFooter>

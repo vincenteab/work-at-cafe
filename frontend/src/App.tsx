@@ -10,6 +10,7 @@ import AddCafe from "./pages/AddCafe";
 import Login from "./pages/Login";
 import { Button } from "@/components/ui/button";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import Signup from "./pages/Signup";
 
 function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
@@ -65,6 +66,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/add" element={<AddCafe />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
             </Routes>
           </main>
         </div>

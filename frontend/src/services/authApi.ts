@@ -12,12 +12,21 @@ interface AuthResponse {
   token: string;
 }
 
+const saveTokenAndUser = (token: string, user: User) => {
+  localStorage.setItem("token", token);
+  localStorage.setItem("user", JSON.stringify(user));
+};
+
 export const authService = {
   register: async (data: any) => {
     const response = await apiClient.post<AuthResponse>(
       "/users/register",
       data,
     );
+
+    if (response.data.token) {
+      saveTokenAndUser(response.data.token, response.data.user);
+    }
     return response.data;
   },
 
@@ -26,8 +35,7 @@ export const authService = {
 
     // If login works and token comes back, save it in localStorage
     if (response.data.token) {
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      saveTokenAndUser(response.data.token, response.data.user);
     }
 
     return response.data;
