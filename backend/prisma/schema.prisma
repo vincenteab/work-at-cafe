@@ -19,7 +19,7 @@ model User {
   email String  @unique
   name  String?
   passwordHash String
-  cafes Cafe[]
+  favourites Favorite[]
 }
 
 model Cafe {
@@ -29,8 +29,7 @@ model Cafe {
   longitude Float
   reviews   Review[]
   createdAt DateTime @default(now())
-  createdBy User     @relation(fields: [userId], references: [id])
-  userId    Int
+  favouritedBy Favorite[]
 }
 
 model Review {
@@ -43,4 +42,17 @@ model Review {
   cafeId     Int
   cafe       Cafe     @relation(fields: [cafeId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
+}
+
+model Favorite {
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  
+  cafe      Cafe     @relation(fields: [cafeId], references: [id], onDelete: Cascade)
+  cafeId    Int
+  
+  createdAt DateTime @default(now())
+
+  // Prevents duplicate favourites
+  @@id([userId, cafeId]) 
 }
