@@ -8,14 +8,12 @@ export async function createCafe(data: {
   name: string;
   latitude: number;
   longitude: number;
-  userId: number;
 }) {
   return prisma.cafe.create({
     data: {
       name: data.name,
       latitude: data.latitude,
       longitude: data.longitude,
-      userId: data.userId,
     },
   });
 }

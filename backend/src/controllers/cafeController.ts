@@ -32,7 +32,6 @@ export async function listCafe(req: Request, res: Response) {
 export async function addCafes(req: AuthRequest, res: Response) {
   try {
     const { name, latitude, longitude } = req.body ?? {};
-    const userId = req.user!.userId;
 
     if (
       typeof name !== "string" ||
@@ -47,7 +46,6 @@ export async function addCafes(req: AuthRequest, res: Response) {
       name: name.trim(),
       latitude,
       longitude,
-      userId,
     });
     return res.status(201).json(cafe);
   } catch (error: unknown) {

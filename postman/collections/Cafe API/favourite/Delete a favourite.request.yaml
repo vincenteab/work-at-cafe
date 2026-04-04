@@ -1,0 +1,15 @@
+$kind: http-request
+name: Delete a favourite
+url: "{{base_url}}/favourites"
+method: DELETE
+body:
+  type: json
+  content: |-
+    {
+        "cafeId": {{delete_favourite_cafe_id}}
+    }
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3NTM0MDI3OCwiZXhwIjoxNzc1NDI2Njc4fQ.Jzbw-in5X2ulYlj7kuea_YK1gzQP5ZFuXk_YYpaZS-o
+order: 3903982928416845

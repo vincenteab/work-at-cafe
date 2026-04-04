@@ -1,4 +1,9 @@
 $kind: http-request
+name: Get cafes
 url: "{{base_url}}/cafes"
 method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTc3NDgyNDE1MiwiZXhwIjoxNzc0OTEwNTUyfQ.S77BXhqDR2deVB6Y0at4VaZW1eBX7Rz4AlIV2PxHW8A
 order: 1774669948354

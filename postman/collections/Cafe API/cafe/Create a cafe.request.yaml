@@ -11,7 +11,5 @@ body:
       "longitude": {{cafe_longitude}}
     }
 auth:
-  type: bearer
-  credentials:
-    token: ""
+  type: noauth
 order: 3558825340767381

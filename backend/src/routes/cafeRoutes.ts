@@ -6,13 +6,12 @@ import {
   removeCafe,
   listCafe,
 } from "../controllers/cafeController";
-import { requireAuth } from "../middleware/authMiddleware";
 
 const cafeRoutes = Router();
 cafeRoutes.get("/", listCafes);
 cafeRoutes.get("/:id", listCafe);
-cafeRoutes.post("/", requireAuth, addCafes);
-cafeRoutes.patch("/:id", requireAuth, modifyCafe);
-cafeRoutes.delete("/:id", requireAuth, removeCafe);
+cafeRoutes.post("/", addCafes);
+cafeRoutes.patch("/:id", modifyCafe);
+cafeRoutes.delete("/:id", removeCafe);
 
 export default cafeRoutes;

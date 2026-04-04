@@ -12,3 +12,5 @@ variables:
   user_password: ""
   login_email: ""
   login_password: ""
+  favourite_cafe_id: ""
+  delete_favourite_cafe_id: ""
