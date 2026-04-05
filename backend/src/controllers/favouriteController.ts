@@ -47,7 +47,7 @@ export async function addFavourite(req: AuthRequest, res: Response) {
 export async function removeFavourite(req: AuthRequest, res: Response) {
   try {
     const userId = req.user!.userId;
-    const { cafeId } = req.body;
+    const cafeId = Number(req.params.id);
 
     if (!cafeId) {
       return res.status(400).json({ error: "cafeId is required" });

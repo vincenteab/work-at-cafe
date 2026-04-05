@@ -1,13 +1,10 @@
 $kind: http-request
 name: Delete a favourite
-url: "{{base_url}}/favourites"
+url: "{{base_url}}/favourites/{{delete_favourite_cafe_id}}"
 method: DELETE
 body:
   type: json
-  content: |-
-    {
-        "cafeId": {{delete_favourite_cafe_id}}
-    }
+  content: ""
 auth:
   type: bearer
   credentials:

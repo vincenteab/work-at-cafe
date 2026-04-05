@@ -10,6 +10,6 @@ const favouriteRoutes = Router();
 favouriteRoutes.use(requireAuth);
 favouriteRoutes.get("/", listFavourites);
 favouriteRoutes.post("/", addFavourite);
-favouriteRoutes.delete("/", removeFavourite);
+favouriteRoutes.delete("/:id", removeFavourite);
 
 export default favouriteRoutes;

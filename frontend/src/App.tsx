@@ -6,7 +6,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import AddCafe from "./pages/AddCafe";
 import Login from "./pages/Login";
 import { Button } from "@/components/ui/button";
 import { AuthProvider, useAuth } from "./context/AuthContext";
@@ -34,9 +33,6 @@ function Navbar() {
               <span className="text-sm text-gray-600">
                 Welcome, {user?.name || "User"}!
               </span>
-              <Link to="/add">
-                <Button variant="outline">Add a Cafe</Button>
-              </Link>
               <Button onClick={handleLogout} variant="ghost">
                 Log Out
               </Button>
@@ -64,7 +60,6 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/add" element={<AddCafe />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
             </Routes>

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { SimpleAlertDialog } from "@/components/ui/alert-dialog";
-import { cafeService } from "../services/cafeApi";
+import { favouriteService } from "../services/favouriteApi";
 import { useAuth } from "@/context/AuthContext";
 
 interface Cafe {
@@ -23,15 +23,15 @@ export default function Home() {
   const [cafes, setCafes] = useState<Cafe[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const handleDelete = async (cafeId: number) => {
     setError(null);
     setIsLoading(true);
     try {
-      await cafeService.delete(cafeId);
+      await favouriteService.delete(cafeId);
     } catch (err: any) {
-      setError(err.response?.data?.error || "Failed to delete cafe");
+      setError(err.response?.data?.error || "Failed to delete favourite");
     } finally {
       // Refresh cafe list after deletion
       setIsLoading(false);
@@ -39,20 +39,21 @@ export default function Home() {
     }
   };
 
-  // ** Move this into services in future **
   useEffect(() => {
     if (isAuthenticated) {
-      fetch(import.meta.env.VITE_API_URL + "/cafes")
-        .then((response) => {
-          if (!response.ok) throw new Error("Failed to fetch cafes");
-          return response.json();
-        })
+      favouriteService
+        .getAll()
         .then((data) => {
           setCafes(data);
           setIsLoading(false);
         })
-        .catch((err) => {
-          setError(err.message);
+        .catch((err: any) => {
+          if (err.response?.status === 404) {
+            setCafes([]);
+            setError(null);
+          } else {
+            setError(err.message || "Failed to fetch favourites");
+          }
           setIsLoading(false);
         });
     }
@@ -106,18 +107,14 @@ export default function Home() {
                 </p>
               </CardContent>
               <CardFooter>
-                <Link to={`/edit/${cafe.id}`} state={{ cafe }}>
-                  <Button variant="secondary" className="w-full">
-                    Edit Cafe
-                  </Button>
-                </Link>
+                <Link to={`/edit/${cafe.id}`} state={{ cafe }}></Link>
                 <SimpleAlertDialog
                   title="Delete"
                   description={`Are you sure you want to delete "${cafe.name}"? This action cannot be undone.`}
                   confirmText="Delete"
                   onConfirm={() => handleDelete(cafe.id)}
                   triggerContent={
-                    <Button variant="destructive">Delete Cafe</Button>
+                    <Button variant="destructive">Remove Cafe</Button>
                   }
                 ></SimpleAlertDialog>
               </CardFooter>
