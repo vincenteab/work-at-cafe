@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import { Button } from "@/components/ui/button";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Signup from "./pages/Signup";
+import AllCafes from "./pages/AllCafes";
 
 function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
@@ -23,9 +24,17 @@ function Navbar() {
   return (
     <nav className="bg-white border-b p-4 mb-8">
       <div className="max-w-5xl mx-auto flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold">
-          Study Spots
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link to="/" className="text-xl font-bold">
+            Study Spots
+          </Link>
+          <Link
+            to="/cafes"
+            className="hover:text-gray-900 transition-colors cursor-pointer"
+          >
+            Cafe list
+          </Link>
+        </div>
 
         <div className="flex items-center gap-4">
           {isAuthenticated ? (
@@ -60,6 +69,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/cafes" element={<AllCafes />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
             </Routes>
