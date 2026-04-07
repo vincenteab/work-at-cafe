@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { cafeService } from "../services/cafeApi";
 import { useAuth } from "@/context/AuthContext";
+import { Link } from "react-router-dom";
 
 interface Cafe {
   id: number;
@@ -68,19 +69,21 @@ export default function Home() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cafes.map((cafe) => (
-            <Card key={cafe.id} className="hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-xl">{cafe.name}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-500 mb-1">
-                  <span className="font-semibold">Lat:</span> {cafe.latitude}
-                </p>
-                <p className="text-sm text-gray-500">
-                  <span className="font-semibold">Lng:</span> {cafe.longitude}
-                </p>
-              </CardContent>
-            </Card>
+            <Link key={cafe.id} to="/viewCafe" state={{ cafe }}>
+              <Card key={cafe.id} className="hover:shadow-md transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl">{cafe.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-500 mb-1">
+                    <span className="font-semibold">Lat:</span> {cafe.latitude}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    <span className="font-semibold">Lng:</span> {cafe.longitude}
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
 
           {cafes.length === 0 && !error && (

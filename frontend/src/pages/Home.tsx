@@ -76,7 +76,9 @@ export default function Home() {
     <div className="max-w-5xl mx-auto p-6 font-sans">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight">Study Spots</h1>
+          <h1 className="text-4xl font-bold tracking-tight">
+            Your study spots
+          </h1>
           <p className="text-gray-500 mt-2">
             Find your perfect work environment
           </p>

@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Signup from "./pages/Signup";
 import AllCafes from "./pages/AllCafes";
+import DetailedCafe from "./pages/DetailedCafe";
 
 function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
@@ -72,6 +73,7 @@ function App() {
               <Route path="/cafes" element={<AllCafes />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/viewCafe" element={<DetailedCafe />} />
             </Routes>
           </main>
         </div>
