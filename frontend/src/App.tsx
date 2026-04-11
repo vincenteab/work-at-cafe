@@ -12,6 +12,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import Signup from "./pages/Signup";
 import AllCafes from "./pages/AllCafes";
 import DetailedCafe from "./pages/DetailedCafe";
+import { Toaster } from "@/components/ui/sonner";
 
 function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
@@ -76,6 +77,7 @@ function App() {
               <Route path="/viewCafe" element={<DetailedCafe />} />
             </Routes>
           </main>
+          <Toaster />
         </div>
       </BrowserRouter>
     </AuthProvider>

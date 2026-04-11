@@ -14,12 +14,7 @@ export const favouriteService = {
     return response.data;
   },
 
-  create: async (data: {
-    name: string;
-    latitude: number;
-    longitude: number;
-    userId: number;
-  }) => {
+  create: async (data: { cafeId: number }) => {
     const response = await apiClient.post<Cafe>("/favourites", data);
     return response.data;
   },
